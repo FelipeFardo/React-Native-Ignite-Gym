@@ -2,6 +2,7 @@ import {  View, StatusBar } from 'react-native';
 import { useFonts, Roboto_700Bold, Roboto_400Regular } from '@expo-google-fonts/roboto'
 import { Center, GluestackUIStyledProvider,Text } from '@gluestack-ui/themed';
 import { config } from'./config/gluestack-ui.config';
+import { Loading } from '@components/Loading';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -18,7 +19,7 @@ export default function App() {
           </Center>
           )
         :(
-          <View/>
+          <Loading/>
         )}
        </GluestackUIStyledProvider>
   )
