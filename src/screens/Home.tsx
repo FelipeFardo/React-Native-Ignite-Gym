@@ -14,9 +14,6 @@ export function Home() {
     "Puxada frontal",
     "Remada Curvada",
     "Remada Unilateral",
-    "1",
-    "2",
-    "3",
   ]);
   const [groups] = useState(["Costas", "Biceps", "Triceps", "Ombro"]);
   const [groupSelected, setGroupSelected] = useState("Costas");
