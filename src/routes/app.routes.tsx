@@ -13,7 +13,6 @@ import { History } from "@screens/History";
 import { Profile } from "@screens/Profile";
 import { Exercise } from "@screens/Exercise";
 import { Platform } from "react-native";
-import { Text } from "@gluestack-ui/themed";
 
 type AppRoutes = {
   home: undefined;
@@ -78,6 +77,9 @@ export function AppRoutes() {
         component={Exercise}
         options={{
           tabBarButton: () => null,
+          tabBarItemStyle: {
+            display: "none",
+          },
         }}
       />
     </Navigator>
