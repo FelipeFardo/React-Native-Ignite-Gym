@@ -5,25 +5,25 @@ import {
   Pressable,
   Icon,
   VStack,
-} from "@gluestack-ui/themed";
-import { X } from "lucide-react-native";
+} from '@gluestack-ui/themed'
+import { X } from 'lucide-react-native'
 
 type Props = {
-  id: string;
-  title: string;
-  description?: string;
-  action?: "error" | "success";
-  onClose: () => void;
-};
+  id: string
+  title: string
+  description?: string
+  action?: 'error' | 'success'
+  onClose: () => void
+}
 
 export function ToastMessage({
   id,
   title,
   description,
-  action = "success",
+  action = 'success',
   onClose,
 }: Props) {
-  const bgColor = action === "success" ? "$green500" : "$red500";
+  const bgColor = action === 'success' ? '$green500' : '$red500'
 
   return (
     <Toast nativeID={`toast-${id}`} action={action} bgColor={bgColor} mt="$10">
@@ -42,5 +42,5 @@ export function ToastMessage({
         )}
       </VStack>
     </Toast>
-  );
+  )
 }

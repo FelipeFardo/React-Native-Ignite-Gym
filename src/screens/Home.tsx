@@ -1,29 +1,26 @@
-import { Group } from "@components/Group";
-import { HomeHeader } from "@components/HomeHeader";
-import { FlatList } from "react-native";
+import { Group } from '@components/Group'
+import { HomeHeader } from '@components/HomeHeader'
+import { FlatList } from 'react-native'
 
-import { VStack } from "@gluestack-ui/themed";
-import { useState } from "react";
-import { HStack } from "@gluestack-ui/themed";
-import { Heading } from "@gluestack-ui/themed";
-import { Text } from "@gluestack-ui/themed";
-import { ExerciseCard } from "@components/ExerciseCard";
-import { useNavigation } from "@react-navigation/native";
-import type { AppNavigatorRoutesProps } from "@routes/app.routes";
+import { VStack, HStack, Heading, Text } from '@gluestack-ui/themed'
+import { useState } from 'react'
+import { ExerciseCard } from '@components/ExerciseCard'
+import { useNavigation } from '@react-navigation/native'
+import type { AppNavigatorRoutesProps } from '@routes/app.routes'
 
 export function Home() {
   const [exercises, setExercises] = useState([
-    "Puxada frontal",
-    "Remada Curvada",
-    "Remada Unilateral",
-  ]);
-  const [groups] = useState(["Costas", "Biceps", "Triceps", "Ombro"]);
-  const [groupSelected, setGroupSelected] = useState("Costas");
+    'Puxada frontal',
+    'Remada Curvada',
+    'Remada Unilateral',
+  ])
+  const [groups] = useState(['Costas', 'Biceps', 'Triceps', 'Ombro'])
+  const [groupSelected, setGroupSelected] = useState('Costas')
 
-  const navigation = useNavigation<AppNavigatorRoutesProps>();
+  const navigation = useNavigation<AppNavigatorRoutesProps>()
 
   function handleOpenExerciseDetails() {
-    navigation.navigate("exercise");
+    navigation.navigate('exercise')
   }
 
   return (
@@ -37,7 +34,7 @@ export function Home() {
             name={item}
             isActive={item.toLowerCase() === groupSelected.toLowerCase()}
             onPress={() => {
-              setGroupSelected(item);
+              setGroupSelected(item)
             }}
           />
         )}
@@ -66,5 +63,5 @@ export function Home() {
         />
       </VStack>
     </VStack>
-  );
+  )
 }

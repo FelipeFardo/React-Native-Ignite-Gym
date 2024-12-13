@@ -1,9 +1,8 @@
-import { Heading } from "@gluestack-ui/themed";
-import { Center } from "@gluestack-ui/themed";
+import { Heading, Center } from '@gluestack-ui/themed'
 
 type Props = {
-  title: string;
-};
+  title: string
+}
 
 export function ScreenHeader({ title }: Props) {
   return (
@@ -12,5 +11,5 @@ export function ScreenHeader({ title }: Props) {
         {title}
       </Heading>
     </Center>
-  );
+  )
 }

@@ -1,58 +1,59 @@
-import { useState } from "react";
-import { ScrollView, TouchableOpacity } from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import * as FileSystem from "expo-file-system";
-import { Button } from "@components/Button";
-import { Input } from "@components/Input";
-import { ScreenHeader } from "@components/ScreenHeader";
-import { UserPhoto } from "@components/UserPhoto";
-import { Center, VStack, Text, Heading, useToast } from "@gluestack-ui/themed";
-import { ToastMessage } from "@components/ToastMessage";
+import { useState } from 'react'
+import { ScrollView, TouchableOpacity } from 'react-native'
+import * as ImagePicker from 'expo-image-picker'
+import * as FileSystem from 'expo-file-system'
+import { Button } from '@components/Button'
+import { Input } from '@components/Input'
+import { ScreenHeader } from '@components/ScreenHeader'
+import { UserPhoto } from '@components/UserPhoto'
+import { Center, VStack, Text, Heading, useToast } from '@gluestack-ui/themed'
+import { ToastMessage } from '@components/ToastMessage'
 
 export function Profile() {
-  const [userPhoto, setUserPhoto] = useState(
-    "https:github.com/felipefardo.png"
-  );
+  const [userPhoto, setUserPhoto] = useState('https:github.com/felipefardo.png')
 
-  const toast = useToast();
+  const toast = useToast()
 
   async function handleUserPhotoSelect() {
     try {
       const photoSelected = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ["images"],
+        mediaTypes: ['images'],
         quality: 1,
         aspect: [4, 4],
         allowsEditing: true,
-      });
+      })
 
-      if (photoSelected.canceled) return;
+      if (photoSelected.canceled) return
 
-      const photoURI = photoSelected.assets[0].uri;
+      const photoURI = photoSelected.assets[0].uri
 
       if (photoURI) {
         const photoInfo = (await FileSystem.getInfoAsync(photoURI)) as {
-          size: number;
-        };
-
-        if (photoInfo.size && photoInfo.size / 1024 / 1024 > 5) {
-           toast.show({
-            placement: "top",
-            render: ({ id }) => (
-              <ToastMessage
-                id={id}
-                action="error"
-                title="Essa imagem é muito grande. Escolha uma de até 5MB"
-                onClose={() => toast.close(id)}
-              />
-            ),
-          });
-          return 
+          size: number
         }
 
-        setUserPhoto(photoURI);
+        if (photoInfo.size && photoInfo.size / 1024 / 1024 > 5) {
+          toast.show({
+            placement: 'top',
+            render: ({ id }) => {
+              console.log('Render chamado', id)
+              return (
+                <ToastMessage
+                  id={id}
+                  action="error"
+                  title="Essa imagem é muito grande. Escolha uma de até 5MB"
+                  onClose={() => toast.close(id)}
+                />
+              )
+            },
+          })
+          return
+        }
+
+        setUserPhoto(photoURI)
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
 
@@ -104,5 +105,5 @@ export function Profile() {
         </Center>
       </ScrollView>
     </VStack>
-  );
+  )
 }

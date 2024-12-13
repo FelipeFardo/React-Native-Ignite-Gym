@@ -1,5 +1,4 @@
-import { Text } from "@gluestack-ui/themed";
-import { HStack, Heading, VStack } from "@gluestack-ui/themed";
+import { Text, HStack, Heading, VStack } from '@gluestack-ui/themed'
 
 export function HistoryCard() {
   return (
@@ -32,5 +31,5 @@ export function HistoryCard() {
         08:56
       </Text>
     </HStack>
-  );
+  )
 }

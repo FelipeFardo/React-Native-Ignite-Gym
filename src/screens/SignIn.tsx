@@ -5,6 +5,7 @@ import {
   Text,
   Heading,
   ScrollView,
+  useToast,
 } from '@gluestack-ui/themed'
 
 import BackgroundImg from '@assets/background.png'
@@ -14,6 +15,7 @@ import { Input } from '@components/Input'
 import { Button } from '@components/Button'
 import { useNavigation } from '@react-navigation/native'
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
+import { ToastMessage } from '@components/ToastMessage'
 
 export function SignIn() {
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
@@ -21,6 +23,7 @@ export function SignIn() {
   function handleNewAccount() {
     navigation.navigate('signUp')
   }
+
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}
