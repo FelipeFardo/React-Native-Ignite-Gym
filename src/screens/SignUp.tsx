@@ -7,36 +7,40 @@ import {
   Heading,
   ScrollView,
 } from '@gluestack-ui/themed'
-import { z } from 'zod'
+import * as yup from 'yup'
 import BackgroundImg from '@assets/background.png'
 import Logo from '@assets/logo.svg'
 
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
 
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigation } from '@react-navigation/native'
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
 
-const signUpSchema = z
-  .object({
-    name: z.string(),
-    email: z
-      .string()
-      .email({ message: 'Please, provide a valid e-mail addresss.' }),
-    password: z
-      .string()
-      .min(6, { message: 'Password should have at least 6 characters.' }),
-    password_confirmation: z.string(),
-  })
-  .refine((data) => data.password === data.password_confirmation, {
-    message: 'Password confirmation  does not match',
-    path: [`password_confirmation`],
-  })
+const signUpSchema = yup.object({
+  name: yup.string().required('Informe o nome.'),
+  email: yup.string().required('Informe o e-mail.').email('Email inválido.'),
+  password: yup
+    .string()
+    .required('Informe a senha.')
+    .min(6, 'A senha deve ter pelo menos 6 dígitos.'),
+  password_confirmation: yup
+    .string()
+    .required('Confirme a senha.')
+    .oneOf([yup.ref('password'), ''], 'A confirmação da senha não confere.'),
+})
 
-type SignUpSchema = z.infer<typeof signUpSchema>
+type SignUpSchema = yup.InferType<typeof signUpSchema>
 
 export function SignUp() {
-  const { control, handleSubmit } = useForm<SignUpSchema>()
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpSchema>({
+    resolver: yupResolver(signUpSchema),
+  })
 
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
@@ -71,7 +75,6 @@ export function SignUp() {
           </Center>
           <Center gap="$2" flex={1}>
             <Heading color="$gray100">Crie sua conta</Heading>
-
             <Controller
               control={control}
               name="name"
@@ -80,9 +83,11 @@ export function SignUp() {
                   placeholder="Nome"
                   onChangeText={onChange}
                   value={value}
+                  errorMessage={errors.name?.message}
                 />
               )}
             />
+
             <Controller
               control={control}
               name="email"
@@ -93,9 +98,11 @@ export function SignUp() {
                   autoCapitalize="none"
                   onChangeText={onChange}
                   value={value}
+                  errorMessage={errors.email?.message}
                 />
               )}
             />
+
             <Controller
               control={control}
               name="password"
@@ -105,6 +112,7 @@ export function SignUp() {
                   secureTextEntry
                   onChangeText={onChange}
                   value={value}
+                  errorMessage={errors.password?.message}
                 />
               )}
             />
@@ -117,10 +125,12 @@ export function SignUp() {
                   secureTextEntry
                   onChangeText={onChange}
                   value={value}
+                  onSubmitEditing={handleSubmit(handleSignUp)}
+                  returnKeyType="send"
+                  errorMessage={errors.password_confirmation?.message}
                 />
               )}
             />
-
             <Button
               title="Criar e acessar"
               onPress={handleSubmit(handleSignUp)}
