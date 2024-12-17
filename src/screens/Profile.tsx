@@ -36,7 +36,6 @@ export function Profile() {
           toast.show({
             placement: 'top',
             render: ({ id }) => {
-              console.log('Render chamado', id)
               return (
                 <ToastMessage
                   id={id}

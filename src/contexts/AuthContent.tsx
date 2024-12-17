@@ -44,6 +44,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         storageUserSave(userData),
         storageAuthTokenSave(token),
       ])
+    } catch(error) {
+      throw error
     } finally {
       setIsLoadingUserStorageData(false)
     }
@@ -64,12 +66,16 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       setUser({} as UserDTO)
 
       await Promise.all([storageAuthTokenRemove(), storageUserRemove()])
-    } finally {
+    } 
+    catch (error){
+      throw error
+    }
+    finally {
       setIsLoadingUserStorageData(false)
     }
   }
 
-  const loadUserData = useCallback(async () => {
+  async function loadUserData() {
     try {
       setIsLoadingUserStorageData(true)
 
@@ -81,14 +87,16 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       if (token && userLogged) {
         userAndTokenUpdate(userLogged, token)
       }
+    } catch (error) {
+      throw error
     } finally {
       setIsLoadingUserStorageData(false)
     }
-  }, [])
+  }
 
   useEffect(() => {
     loadUserData()
-  }, [loadUserData])
+  }, [])
 
   return (
     <AuthContext.Provider

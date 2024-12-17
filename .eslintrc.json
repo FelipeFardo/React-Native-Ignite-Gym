@@ -1,7 +1,0 @@
-{
-  "extends": "@rocketseat/eslint-config/react",
-  "rules": {
-    "@jsx-a11y/alt-text": "off",
-    "@typescript-eslint/no-unused-vars": "off"
-  }
-}
