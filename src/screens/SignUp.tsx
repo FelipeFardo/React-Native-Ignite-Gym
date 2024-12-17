@@ -1,4 +1,4 @@
-import { useForm, Controller } from 'react-hook-form'
+import { useState } from 'react'
 import {
   VStack,
   Image,
@@ -8,21 +8,25 @@ import {
   ScrollView,
   useToast,
 } from '@gluestack-ui/themed'
+
+import { useAuth } from '@hooks/useAuth'
+
+import { useForm, Controller } from 'react-hook-form'
 import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+
 import BackgroundImg from '@assets/background.png'
 import Logo from '@assets/logo.svg'
 
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
+import { ToastMessage } from '@components/ToastMessage'
 
-import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigation } from '@react-navigation/native'
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
-import { api } from '@services/api'
-import axios from 'axios'
-import { Alert } from 'react-native'
+
 import { AppError } from '@utils/AppError'
-import { ToastMessage } from '@components/ToastMessage'
+import { api } from '@services/api'
 
 const signUpSchema = yup.object({
   name: yup.string().required('Informe o nome.'),
@@ -40,6 +44,8 @@ const signUpSchema = yup.object({
 type SignUpSchema = yup.InferType<typeof signUpSchema>
 
 export function SignUp() {
+  const [isLoading, setIsLoading] = useState(false)
+  const { signIn } = useAuth()
   const {
     control,
     handleSubmit,
@@ -58,10 +64,11 @@ export function SignUp() {
 
   async function handleSignUp({ email, name, password }: SignUpSchema) {
     try {
-      const response = await api.post('/users', { name, email, password })
-
-      console.log(response.data)
+      setIsLoading(true)
+      await api.post('/users', { name, email, password })
+      await signIn(email, password)
     } catch (error) {
+      setIsLoading(false)
       const isAppError = error instanceof AppError
       const title = isAppError
         ? error.message
@@ -164,6 +171,7 @@ export function SignUp() {
             <Button
               title="Criar e acessar"
               onPress={handleSubmit(handleSignUp)}
+              isLoading={isLoading}
             />
           </Center>
 
