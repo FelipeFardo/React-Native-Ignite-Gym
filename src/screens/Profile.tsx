@@ -32,19 +32,7 @@ export function Profile() {
           size: number
         }
 
-        toast.show({
-          placement: 'top',
-          render: ({ id }) => (
-            <ToastMessage
-              id={id}
-              action="error"
-              title="Essa imagem é muito grande. Escolha uma de até 5MB"
-              onClose={() => toast.close(id)}
-            />
-          ),
-        })
-
-        if (photoInfo.size && photoInfo.size / 1024 / 1024 > 0.05) {
+        if (photoInfo.size && photoInfo.size / 1024 / 1024 > 5) {
           toast.show({
             placement: 'top',
             render: ({ id }) => {
