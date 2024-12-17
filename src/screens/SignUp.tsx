@@ -55,7 +55,7 @@ export function SignUp() {
   })
 
   const toast = useToast()
-
+  
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
   function handleGoBack() {

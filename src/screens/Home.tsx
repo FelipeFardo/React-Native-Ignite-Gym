@@ -17,7 +17,7 @@ export function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const [exercises, setExercises] = useState<ExerciseDTO[]>([])
   const [groups, setGroups] = useState<string[]>([])
-  const [groupSelected, setGroupSelected] = useState<string>('costas')
+  const [groupSelected, setGroupSelected] = useState<string>('')
 
   const toast = useToast()
   const navigation = useNavigation<AppNavigatorRoutesProps>()
@@ -30,16 +30,19 @@ export function Home() {
     try {
       const response = await api.get('/groups')
       setGroups(response.data)
+      setGroupSelected(response.data[0])
     } catch (error) {
       const isAppError = error instanceof AppError
       const title = isAppError
         ? error.message
         : 'Não foi possível carregar os grupos musculares'
       toast.show({
+        placement:"top",
         render: ({ id }) => {
           return (
             <ToastMessage
               id={id}
+
               action="error"
               title={title}
               onClose={() => toast.close(id)}
@@ -61,6 +64,7 @@ export function Home() {
         ? error.message
         : 'Não foi possível carregar exercícios'
       toast.show({
+        placement:"top",
         render: ({ id }) => {
           return (
             <ToastMessage
