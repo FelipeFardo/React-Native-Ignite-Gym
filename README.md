@@ -6,19 +6,19 @@
 ### Interface
 
 #### Login
-<img src="https://github.com/FelipeFardo/Assets/blob/main/React-Native-Ignite-Gym/Screenshot_02.jpeg" alt="Home" height="1000" />
+<img src="https://github.com/FelipeFardo/Assets/blob/main/React-Native-Ignite-Gym/Screenshot_02.jpeg" alt="Home" height="500" />
 
 #### Exercises
-<img src="https://github.com/FelipeFardo/Assets/blob/main/React-Native-Ignite-Gym/Screenshot_04.jpeg" alt="Exercises" height="1000" />
+<img src="https://github.com/FelipeFardo/Assets/blob/main/React-Native-Ignite-Gym/Screenshot_04.jpeg" alt="Exercises" height="500" />
 
 #### Exercise Details
-<img src="https://github.com/FelipeFardo/Assets/blob/main/React-Native-Ignite-Gym/Screenshot_01.jpeg" alt="Exercise Details" height="1000" />
+<img src="https://github.com/FelipeFardo/Assets/blob/main/React-Native-Ignite-Gym/Screenshot_01.jpeg" alt="Exercise Details" height="500" />
 
 #### History
-<img src="https://github.com/FelipeFardo/Assets/blob/main/React-Native-Ignite-Gym/Screenshot_05.jpeg" alt="History" height="1000" />
+<img src="https://github.com/FelipeFardo/Assets/blob/main/React-Native-Ignite-Gym/Screenshot_05.jpeg" alt="History" height="500" />
 
 #### Profile
-<img src="https://github.com/FelipeFardo/Assets/blob/main/React-Native-Ignite-Gym/Screenshot_03.jpeg" alt="Profile" height="1000" />
+<img src="https://github.com/FelipeFardo/Assets/blob/main/React-Native-Ignite-Gym/Screenshot_03.jpeg" alt="Profile" height="500" />
 
 ## 🚀 Technologies
 This project was developed with the following technologies:
