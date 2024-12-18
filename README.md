@@ -47,7 +47,7 @@ npm start
 
 ## 🧾 Notes / Observations
 
-This mobile project is designed to work in conjunction with the [IgniteGym API][https://github.com/rocketseat-education/ignite-rn-04-ignite-gym/tree/main/api]. The API is responsible for providing the core data and functionality required for the proper operation of the application.
+This mobile project is designed to work in conjunction with the [IgniteGym API](https://github.com/rocketseat-education/ignite-rn-04-ignite-gym/tree/main/api). The API is responsible for providing the core data and functionality required for the proper operation of the application.
 
 ⚠️ Important: Without the API set up and running, the mobile app will have limited functionality or may not work at all.
 
