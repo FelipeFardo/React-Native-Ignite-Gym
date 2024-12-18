@@ -8,7 +8,7 @@ import { api } from '@services/api'
 import { AppError } from '@utils/AppError'
 import { useCallback, useState } from 'react'
 import { SectionList } from 'react-native'
-
+import {Loading} from '@components/Loading'
 export function History() {
   const [isLoading, setIsLoading] = useState(true) 
   
@@ -52,6 +52,7 @@ export function History() {
   return (
     <VStack flex={1}>
       <ScreenHeader title="Histórico de Exercícios" />
+      {isLoading ? <Loading/> :
       <SectionList
         sections={exercises}
         keyExtractor={(item) => item.id}
@@ -79,6 +80,7 @@ export function History() {
         )}
         showsVerticalScrollIndicator={false}
       />
+    }
     </VStack>
   )
 }
